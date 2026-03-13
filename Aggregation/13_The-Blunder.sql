@@ -1,0 +1,25 @@
+-- Problem: The Blunder
+-- Platform: HackerRank
+-- Subdomain: Aggregation
+-- Difficulty: Easy
+--
+-- Problem Statement:
+-- Samantha was tasked with calculating the average monthly salaries for all
+-- employees in the EMPLOYEES table, but did not realize her keyboard's 0 key
+-- was broken until after completing the calculation. She wants your help
+-- finding the difference between her miscalculation (using salaries with any
+-- zeros removed), and the actual average salary.
+-- Round the result up to the next integer.
+--
+-- Task:
+-- - Calculate the actual average salary using AVG(Salary)
+-- - Calculate the miscalculated average by removing all 0s using REPLACE
+-- - Find the difference between actual and miscalculated average
+-- - Round the result up using CEILING
+--
+-- Approach:
+-- - Use REPLACE(Salary, '0', '') to simulate the broken keyboard effect
+-- - Subtract AVG(REPLACE(Salary,'0','')) from AVG(Salary) to get the error
+-- - Wrap the result in CEILING() to round up to the next integer
+SELECT CEILING(AVG(Salary) - AVG(REPLACE(Salary, '0', ''))) AS error
+FROM EMPLOYEES;
